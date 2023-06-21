@@ -9,9 +9,7 @@ namespace Assets.Scripts
     {
         public override void InstallBindings()
         {
-            Debug.Log("Injection started");
             AuthenticationInstaller.Install(Container);
-            Debug.Log("Injection ended");
         }
     }
 }
