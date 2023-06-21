@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 1010696246}
   - component: {fileID: 1010696248}
   - component: {fileID: 1010696247}
+  - component: {fileID: 1010696249}
   m_Layer: 5
   m_Name: AuthChecker
   m_TagString: Untagged
@@ -448,8 +449,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 511}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 454.563}
+  m_SizeDelta: {x: 756.872, y: 154.021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010696247
 MonoBehaviour:
@@ -505,7 +506,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -548,6 +549,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010696245}
   m_CullTransparentMesh: 1
+--- !u!114 &1010696249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010696245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f5ba08a36314f46af6bf4378c6bccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1156523178
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +789,7 @@ GameObject:
   - component: {fileID: 1985888624}
   - component: {fileID: 1985888623}
   - component: {fileID: 1985888622}
+  - component: {fileID: 1985888625}
   m_Layer: 5
   m_Name: GuestAuthButton
   m_TagString: Untagged
@@ -848,9 +862,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1657424465}
-        m_TargetAssemblyTypeName: AuthTest, Assembly-CSharp
-        m_MethodName: Authenticate
+      - m_Target: {fileID: 1985888625}
+        m_TargetAssemblyTypeName: Assets.Scripts.UI.Authentication.GuestAuthButton,
+          Assembly-CSharp
+        m_MethodName: Auth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -898,3 +913,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985888620}
   m_CullTransparentMesh: 1
+--- !u!114 &1985888625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985888620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8616553d6da90934991b834f0567e15f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
