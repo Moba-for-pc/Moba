@@ -1,9 +1,12 @@
 using System;
 
-public class NotAuthenticatedException : Exception
+namespace Assets.Scripts.Authentication
 {
-    public NotAuthenticatedException(string message) : base(message)
+    public class NotAuthenticatedException : Exception
     {
+        public NotAuthenticatedException(string message) : base(message)
+        {
 
+        }
     }
 }

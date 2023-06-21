@@ -1,18 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ISteamAuth : MonoBehaviour
+namespace Assets.Scripts.Authentication.SteamAuth
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface ISteamAuth : IAuthenticationProvider
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

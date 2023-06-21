@@ -1,4 +1,7 @@
-public static class ExceptionMessages 
+namespace Assets.Scripts.Authentication
 {
-    public const string USER_NOT_AUTHENTICATED = "User doesn't authenticated";
+    public static class ExceptionMessages
+    {
+        public const string USER_NOT_AUTHENTICATED = "User doesn't authenticated";
+    }
 }

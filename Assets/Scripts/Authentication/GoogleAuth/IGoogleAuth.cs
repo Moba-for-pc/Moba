@@ -1,18 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IGoogleAuth : MonoBehaviour
+namespace Assets.Scripts.Authentication.GoogleAuth
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IGoogleAuth : IAuthenticationProvider
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

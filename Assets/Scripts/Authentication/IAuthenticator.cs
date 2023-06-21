@@ -1,9 +1,12 @@
 using System;
 
-public interface IAuthenticator
+namespace Assets.Scripts.Authentication
 {
-    public event Action AuthenticationRequested;
-    public string GetUserId();
-    public bool IsAuthenticated();
-    public void Authenticate();
+    public interface IAuthenticator
+    {
+        public event Action AuthenticationRequested;
+        public string GetUserId();
+        public bool IsAuthenticated();
+        public void Authenticate();
+    }
 }

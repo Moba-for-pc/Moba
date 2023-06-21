@@ -1,36 +1,39 @@
 using System;
 using System.Collections.Generic;
 
-public class Authenticator : IAuthenticator
+namespace Assets.Scripts.Authentication
 {
-    public event Action AuthenticationRequested;
-
-    private List<IAuthenticationProvider> _authProviders;
-
-    public void Authenticate()
+    public class Authenticator : IAuthenticator
     {
-        AuthenticationRequested?.Invoke();
-    }
+        public event Action AuthenticationRequested;
 
-    public string GetUserId()
-    {
-        foreach (var provider in _authProviders)
+        private List<IAuthenticationProvider> _authProviders;
+
+        public void Authenticate()
         {
-            if (provider.IsAuthenticated())
+            AuthenticationRequested?.Invoke();
+        }
+
+        public string GetUserId()
+        {
+            foreach (var provider in _authProviders)
             {
-                return provider.GetUserId();
+                if (provider.IsAuthenticated())
+                {
+                    return provider.GetUserId();
+                }
             }
+            throw new NotAuthenticatedException(ExceptionMessages.USER_NOT_AUTHENTICATED);
         }
-        throw new NotAuthenticatedException(ExceptionMessages.USER_NOT_AUTHENTICATED);
-    }
 
-    public bool IsAuthenticated()
-    {
-        foreach (var provider in _authProviders)
+        public bool IsAuthenticated()
         {
-            if (provider.IsAuthenticated())
-                return true;
+            foreach (var provider in _authProviders)
+            {
+                if (provider.IsAuthenticated())
+                    return true;
+            }
+            return false;
         }
-        return false;
     }
 }

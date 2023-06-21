@@ -1,18 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IAppleAuth : MonoBehaviour
+namespace Assets.Scripts.Authentication.AppleAuth
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IAppleAuth : IAuthenticationProvider
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -1,18 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IGuestAuth : MonoBehaviour
+namespace Assets.Scripts.Authentication.GuestAuth
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IGuestAuth : IAuthenticationProvider
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
