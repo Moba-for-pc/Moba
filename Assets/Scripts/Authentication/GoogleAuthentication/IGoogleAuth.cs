@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Authentication.GoogleAuth
+namespace Assets.Scripts.Authentication.GoogleAuthentication
 {
     public interface IGoogleAuth : IAuthenticationProvider
     {

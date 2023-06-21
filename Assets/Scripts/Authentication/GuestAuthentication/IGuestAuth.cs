@@ -1,7 +1,6 @@
-namespace Assets.Scripts.Authentication.GuestAuth
+namespace Assets.Scripts.Authentication.GuestAuthentication
 {
     public interface IGuestAuth : IAuthenticationProvider
     {
-
     }
 }

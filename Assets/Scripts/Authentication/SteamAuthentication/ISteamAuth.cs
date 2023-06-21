@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Authentication.SteamAuth
+namespace Assets.Scripts.Authentication.SteamAuthentication
 {
     public interface ISteamAuth : IAuthenticationProvider
     {
