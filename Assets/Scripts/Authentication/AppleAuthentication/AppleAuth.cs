@@ -14,7 +14,7 @@
 
         public bool IsAuthenticated()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }

@@ -1,10 +1,19 @@
-﻿namespace Assets.Scripts.Authentication.GoogleAuthentication
+﻿using Unity.Services.Authentication;
+using Unity.Services.Core;
+
+namespace Assets.Scripts.Authentication.GoogleAuthentication
 {
     public class GoogleAuth : IGoogleAuth
     {
+        public GoogleAuth()
+        {
+            UnityServices.InitializeAsync();
+        }
+
         public void Authenticate()
         {
-            throw new System.NotImplementedException();
+            
+            
         }
 
         public string GetUserId()
@@ -14,7 +23,7 @@
 
         public bool IsAuthenticated()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }
