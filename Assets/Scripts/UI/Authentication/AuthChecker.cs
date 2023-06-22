@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Ui.Authentication
+namespace Assets.Scripts.UI.Authentication
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class AuthChecker : MonoBehaviour

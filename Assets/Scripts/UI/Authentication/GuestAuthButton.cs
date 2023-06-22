@@ -14,9 +14,9 @@ namespace Assets.Scripts.UI.Authentication
             _guestAuth = guestAuth;
         }
 
-        public void Auth()
+        public async void Auth()
         {
-            _guestAuth.Authenticate();
+            await _guestAuth.AuthenticateAsync();
         }
     }
 }
