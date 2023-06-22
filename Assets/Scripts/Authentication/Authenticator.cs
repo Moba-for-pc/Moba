@@ -8,7 +8,12 @@ namespace Assets.Scripts.Authentication
 
         public Authenticator(IUnityService unityService)
         {
-            unityService.InitIfNeeded();
+            unityService.InitIfNeededAsync();
+        }
+
+        public void Deauthenticate()
+        {
+            AuthenticationService.Instance.SignOut();
         }
 
         public string GetUserId()

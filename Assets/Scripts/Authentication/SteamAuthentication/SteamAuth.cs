@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Authentication.SteamAuthentication
 {
@@ -6,7 +7,7 @@ namespace Assets.Scripts.Authentication.SteamAuthentication
     {
         public event Action Authenticated;
 
-        public void Authenticate()
+        public Task Authenticate()
         {
             throw new System.NotImplementedException(); // TODO подулючить Steam сервисы
         }

@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.UnityService;
 using System;
+using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
+using UnityEngine;
 
 namespace Assets.Scripts.Authentication.GuestAuthentication
 {
@@ -13,21 +15,26 @@ namespace Assets.Scripts.Authentication.GuestAuthentication
         public GuestAuth(IUnityService unityService)
         {
             _unityService = unityService;
-            _unityService.InitIfNeeded();
+            _unityService.InitIfNeededAsync();
         }
 
-        public async void Authenticate()
+        public async Task AuthenticateAsync()
         {
+            if (AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.Log(ExceptionMessages.ALREADY_AUTHENTICATED);
+                return;
+            }
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
 
-        public async void AuthenticateWithUsername(string username)
+        public async Task AuthenticateWithUsernameAsync(string username)
         {
-
             InitializationOptions options = new InitializationOptions();
             options.SetProfile(username);
-            _unityService.ReInitWithOptions(options);
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            await _unityService.ReInitWithOptionsAsync(options);
+            AuthenticationService.Instance.SwitchProfile(username);
+            await AuthenticateAsync();
         }
     }
 }

@@ -4,5 +4,6 @@ namespace Assets.Scripts.Authentication
     {
         public string GetUserId();
         public bool IsAuthenticated();
+        public void Deauthenticate();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Authentication.GoogleAuthentication
 {
@@ -6,16 +7,10 @@ namespace Assets.Scripts.Authentication.GoogleAuthentication
     {
         public event Action Authenticated;
 
-        public void Authenticate()
+        public Task Authenticate()
         {
             throw new NotImplementedException();  //TODO подключить гугл сервисы
 
-        }
-
-
-        public bool IsAuthenticated()
-        {
-            return false;
         }
     }
 }

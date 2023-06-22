@@ -1,11 +1,12 @@
-﻿using Unity.Services.Core;
+﻿using System.Threading.Tasks;
+using Unity.Services.Core;
 
 namespace Assets.Scripts.UnityService
 {
     public interface IUnityService
     {
-        public void InitIfNeeded();
+        public Task InitIfNeededAsync();
 
-        public void ReInitWithOptions(InitializationOptions username);
+        public Task ReInitWithOptionsAsync(InitializationOptions username);
     }
 }

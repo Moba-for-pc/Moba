@@ -1,10 +1,12 @@
-﻿using Unity.Services.Core;
+﻿using System.Threading.Tasks;
+using Unity.Services.Core;
+using UnityEngine;
 
 namespace Assets.Scripts.UnityService
 {
     public class UnityServiceImpl : IUnityService
     {
-        public async void InitIfNeeded()
+        public async Task InitIfNeededAsync()
         {
             if (UnityServices.State == ServicesInitializationState.Initialized)
                 return;
@@ -12,9 +14,10 @@ namespace Assets.Scripts.UnityService
             await UnityServices.InitializeAsync();
         }
 
-        public async void ReInitWithOptions(InitializationOptions options)
+        public async Task ReInitWithOptionsAsync(InitializationOptions options)
         {
             await UnityServices.InitializeAsync(options);
+            Debug.Log("Unity services re-initialized with options");
         }
     }
 }
