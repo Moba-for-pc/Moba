@@ -1,5 +1,5 @@
 using Assets.Scripts.Authentication.DI;
-using UnityEngine;
+using Assets.Scripts.UnityService.DI;
 using Zenject;
 
 namespace Assets.Scripts
@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public override void InstallBindings()
         {
             AuthenticationInstaller.Install(Container);
+            UnityServiceInstaller.Install(Container);
         }
     }
 }
