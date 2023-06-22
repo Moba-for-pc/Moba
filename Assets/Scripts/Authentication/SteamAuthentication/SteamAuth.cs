@@ -1,20 +1,15 @@
-﻿namespace Assets.Scripts.Authentication.SteamAuthentication
+﻿using System;
+
+namespace Assets.Scripts.Authentication.SteamAuthentication
 {
     public class SteamAuth : ISteamAuth
     {
+        public event Action Authenticated;
+
         public void Authenticate()
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException(); // TODO подулючить Steam сервисы
         }
 
-        public string GetUserId()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsAuthenticated()
-        {
-            return false;
-        }
     }
 }

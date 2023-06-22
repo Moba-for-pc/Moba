@@ -1,32 +1,33 @@
-﻿using Unity.Services.Core;
-using Unity.Services.Authentication;
+﻿using Assets.Scripts.UnityService;
 using System;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 
 namespace Assets.Scripts.Authentication.GuestAuthentication
 {
     public class GuestAuth : IGuestAuth
     {
-        public GuestAuth()
+        public event Action Authenticated;
+        private IUnityService _unityService;
+
+        public GuestAuth(IUnityService unityService)
         {
-            UnityServices.InitializeAsync();
+            _unityService = unityService;
+            _unityService.InitIfNeeded();
         }
 
-        public void Authenticate()
+        public async void Authenticate()
         {
-            AuthenticationService.Instance.SignInAnonymouslyAsync();
-            
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
 
-        public string GetUserId()
+        public async void AuthenticateWithUsername(string username)
         {
-            if (!IsAuthenticated())
-                throw new InvalidOperationException(ExceptionMessages.USER_NOT_AUTHENTICATED);
-            return AuthenticationService.Instance.PlayerId;
-        }
 
-        public bool IsAuthenticated()
-        {
-            return AuthenticationService.Instance.IsSignedIn;
+            InitializationOptions options = new InitializationOptions();
+            options.SetProfile(username);
+            _unityService.ReInitWithOptions(options);
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
     }
 }
