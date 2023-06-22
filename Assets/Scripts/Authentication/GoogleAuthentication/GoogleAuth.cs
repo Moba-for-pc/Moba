@@ -1,29 +1,16 @@
-﻿using Unity.Services.Authentication;
-using Unity.Services.Core;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Authentication.GoogleAuthentication
 {
     public class GoogleAuth : IGoogleAuth
     {
-        public GoogleAuth()
-        {
-            UnityServices.InitializeAsync();
-        }
+        public event Action Authenticated;
 
-        public void Authenticate()
+        public Task Authenticate()
         {
-            
-            
-        }
+            throw new NotImplementedException();  //TODO подключить гугл сервисы
 
-        public string GetUserId()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsAuthenticated()
-        {
-            return false;
         }
     }
 }
