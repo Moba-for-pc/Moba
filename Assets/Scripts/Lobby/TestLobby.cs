@@ -1,131 +1,53 @@
-using System.Collections.Generic;
-using Assets.Scripts.UnityService;
 using TMPro;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
-using Zenject;
 
-public class TestLobby : MonoBehaviour, ILobbyService
+public class TestLobby : MonoBehaviour
 {
-    public TMP_InputField InputLobbyCode;
-    public TextMeshProUGUI LobbyCode;
-    
-    private Lobby _hostLobby;
-    private float _heartbeatTimer;
-    private string _playerName;
+    public TMP_InputField inputLobbyCode;
+    private Lobby _lobby;
 
-    private IUnityService _service;
-
-    [Inject]
-    public void Init(IUnityService service)
+    private async void Start()
     {
-        _service = service;
-    }
-
-    private void Awake()
-    {
-        _playerName = "Player" + UnityEngine.Random.Range(0, 1000);
-        Debug.Log(_playerName + " successfully logged in"); // test
-    }
-
-    private void Update()
-    {
-        HandleLobbyHeartbeat();
-    }
-
-    private async void HandleLobbyHeartbeat()
-    {
-        if (_hostLobby != null)
+        await UnityServices.InitializeAsync();
+        AuthenticationService.Instance.SignedIn += () =>
         {
-            _heartbeatTimer -= Time.deltaTime;
-            if (_heartbeatTimer <= 0f)
-            {
-                float heartbeatTimerMax = 15;
-                _heartbeatTimer = heartbeatTimerMax;
+            Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
+        };
 
-                await LobbyService.Instance.SendHeartbeatPingAsync(_hostLobby.Id);
-            }
-        }
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
-    public async void CreateLobby(string lobbyName, int maxPlayers)
+    public async void OnCreateLobby()
     {
         try
         {
-            CreateLobbyOptions createLobbyOptions = new CreateLobbyOptions
-            {
-                IsPrivate = false,
-                Player = new Player
-                {
-                    Data = new Dictionary<string, PlayerDataObject>
-                    {
-                        {"PlayerName", new PlayerDataObject(PlayerDataObject.VisibilityOptions.Member, _playerName)}
-                    }
-                }
-            };
+            string lobbyName = "MyLobby";
+            int maxPlayers = 4;
 
-            Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, createLobbyOptions);
-            _hostLobby = lobby;
-            Debug.Log(lobby.Name + $" lobby created with {lobby.MaxPlayers} max players. Lobby code: " + lobby.LobbyCode);
-            LobbyCode.text = lobby.LobbyCode;
+            _lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers);
+            Debug.Log(_lobby.Name + $" lobby created with {_lobby.MaxPlayers} max players. Lobby code: " + _lobby.LobbyCode);
         }
-        catch (LobbyServiceException e)
+        catch (LobbyServiceException exception)
         {
-            Debug.Log(e);
+            Debug.Log(exception);
         }
     }
 
-    public async void JoinLobbyByCode(string lobbyCode)
+    public async void OnJoinLobbyByCode()
     {
-        lobbyCode = InputLobbyCode.text;
+        string lobbyCode = inputLobbyCode.text;
         try
         {
             await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode);
-            Debug.Log("Joined lobby with name " + _hostLobby.Name);
+            Debug.Log("Joined lobby with name " + _lobby.Name);
         }
-        catch (LobbyServiceException e)
+        catch (LobbyServiceException exception)
         {
-            Debug.Log(e);
-        }
-    }
-
-    public async void GetLobbiesList()
-    {
-        try
-        {
-            QueryLobbiesOptions queryLobbiesOptions = new QueryLobbiesOptions
-            {
-                Count = 25,
-                Filters = new List<QueryFilter> // Filter lobbies which have more than 0 available slots
-                {
-                    new QueryFilter(QueryFilter.FieldOptions.AvailableSlots, "0", QueryFilter.OpOptions.GT)
-                },
-                Order = new List<QueryOrder> //Order lobbies by oldest to newest
-                {
-                    new QueryOrder(false, QueryOrder.FieldOptions.Created)
-                }
-            };
-            QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(queryLobbiesOptions);
-            
-            Debug.Log("Lobbies found: " + queryResponse.Results.Count);
-            foreach (Lobby lobby in queryResponse.Results)
-            {
-                Debug.Log(lobby.Name + " " + lobby.MaxPlayers);
-            }
-        }
-        catch (LobbyServiceException e)
-        {
-            Debug.Log(e);
-        }
-    }
-
-    public void PrintPlayers(Lobby lobby)
-    {
-        Debug.Log("Players in Lobby " + lobby.Name);
-        foreach (Player player in lobby.Players)
-        {
-            Debug.Log("Player ID: " + player.Id + ", Player name: " + player.Data["PlayerName"].Value);
+            Debug.Log( exception);
         }
     }
 }
