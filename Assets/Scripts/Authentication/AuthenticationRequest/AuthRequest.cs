@@ -17,6 +17,12 @@ namespace Assets.Scripts.Authentication.AuthenticationRequest
 
         public void RedirectUserToAuthSceneAndBack()
         {
+            if (_authenticator.IsAuthenticated())
+            {
+                Debug.Log(ExceptionMessages.ALREADY_AUTHENTICATED);
+                return;
+            }
+            
             _authenticator.Authenticated += OnAuthenticated;
             _sceneToRedirectWhenAuthDoneBuildIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(AUTH_SCENE_NAME, LoadSceneMode.Single);
