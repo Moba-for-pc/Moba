@@ -2,7 +2,7 @@ using Zenject;
 
 namespace Assets.Scripts.Lobby.DI
 {
-    internal class LobbyInstaller : Installer<LobbyInstaller>
+    internal class LobbyInstaller : MonoInstaller<LobbyInstaller>
     {
         public override void InstallBindings()
         {

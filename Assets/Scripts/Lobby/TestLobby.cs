@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using Assets.Scripts.UnityService;
-using TMPro;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using Zenject;
 
-public class TestLobby : ILobbyService
+public class TestLobby : ILobbyService, IInitializable, IFixedTickable
 {
     private Lobby _hostLobby;
     private float _heartbeatTimer;
@@ -18,25 +17,25 @@ public class TestLobby : ILobbyService
     public void Init(IUnityService service)
     {
         _service = service;
-        service.InitIfNeededAsync();//
+        service.InitIfNeededAsync();
     }
 
-    private void Awake()
+    public void Initialize()
     {
-        //_playerName = "Player" + UnityEngine.Random.Range(0, 1000);
-        //Debug.Log(_playerName + " successfully logged in"); // test
+        _playerName = "Player" + Random.Range(0, 1000);
+        Debug.Log(_playerName + " successfully logged in"); // test
     }
 
-    private void Update()
+    public void FixedTick()
     {
-        //HandleLobbyHeartbeat();
+        HandleLobbyHeartbeat();
     }
 
     private async void HandleLobbyHeartbeat()
     {
         if (_hostLobby != null)
         {
-            _heartbeatTimer -= Time.deltaTime;
+            _heartbeatTimer -= Time.fixedDeltaTime;
             if (_heartbeatTimer <= 0f)
             {
                 float heartbeatTimerMax = 15;

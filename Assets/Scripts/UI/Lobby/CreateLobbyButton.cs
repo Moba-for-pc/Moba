@@ -1,3 +1,5 @@
+using System;
+using Assets.Scripts.UnityService;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +14,10 @@ public class CreateLobbyButton : MonoBehaviour
     private ILobbyService _lobbyService;
 
     [Inject]
-    public void Init(ILobbyService lobbyService)
+    public void Init(ILobbyService lobbyService, IUnityService service)
     {
         _lobbyService = lobbyService;
+        service.InitIfNeededAsync();//
     }
 
     private void Awake()
@@ -26,5 +29,6 @@ public class CreateLobbyButton : MonoBehaviour
     {
         int maxPlayers = int.Parse(_maxPlayers.text);
         _lobbyService.CreateLobby(_lobbyName.text, maxPlayers);
+
     }
 }
