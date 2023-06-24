@@ -65,7 +65,6 @@ public class TestLobby : ILobbyService, IInitializable, IFixedTickable
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, createLobbyOptions);
             _hostLobby = lobby;
             Debug.Log(lobby.Name + $" lobby created with {lobby.MaxPlayers} max players. Lobby code: " + lobby.LobbyCode);
-            //LobbyCode.text = lobby.LobbyCode;
             PrintPlayers(_hostLobby);
         }
         catch (LobbyServiceException e)
@@ -76,15 +75,16 @@ public class TestLobby : ILobbyService, IInitializable, IFixedTickable
 
     public async void JoinLobbyByCode(string lobbyCode)
     {
-        //lobbyCode = InputLobbyCode.text;
         try
         {
             await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode);
             Debug.Log("Joined lobby with name " + _hostLobby.Name);
+            PrintPlayers(_hostLobby);
         }
         catch (LobbyServiceException e)
         {
             Debug.Log(e);
+            Debug.LogError("JoinLobbyByCode");
         }
     }
 
