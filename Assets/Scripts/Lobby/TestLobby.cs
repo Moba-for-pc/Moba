@@ -77,14 +77,13 @@ public class TestLobby : ILobbyService, IInitializable, IFixedTickable
     {
         try
         {
-            await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode);
-            Debug.Log("Joined lobby with name " + _hostLobby.Name);
-            PrintPlayers(_hostLobby);
+            Lobby lobby = await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode);
+            Debug.Log("Joined lobby with name " + lobby.Name);
+            PrintPlayers(lobby);
         }
         catch (LobbyServiceException e)
         {
             Debug.Log(e);
-            Debug.LogError("JoinLobbyByCode");
         }
     }
 
