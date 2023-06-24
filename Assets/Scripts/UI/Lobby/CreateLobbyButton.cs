@@ -1,4 +1,5 @@
 using Assets.Scripts.UnityService;
+using Lobby.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

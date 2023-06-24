@@ -1,3 +1,6 @@
+using Assets.Scripts.Lobby.Interfaces;
+using Lobby;
+using Lobby.Interfaces;
 using Zenject;
 
 namespace Assets.Scripts.Lobby.DI
@@ -6,7 +9,9 @@ namespace Assets.Scripts.Lobby.DI
     {
         public override void InstallBindings()
         {
-            Container.Bind<ILobbyService>().To<TestLobby>().AsTransient();
+            Container.Bind<ILobbySystem>().To<LobbySystem>().AsSingle();
+            Container.Bind<ILobbyOwner>().To<LobbyOwner>().AsSingle();
+            Container.Bind<ILobbyMember>().To<LobbyMember>().AsSingle();
         }
     }
 }
