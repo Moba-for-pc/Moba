@@ -2,7 +2,7 @@ using Assets.Scripts.Authentication.GuestAuthentication;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.UI.Authentication
+namespace Assets.Scripts.UI.TestScenes.Authentication.AuthenticationScene
 {
     public class GuestAuthButton : MonoBehaviour
     {

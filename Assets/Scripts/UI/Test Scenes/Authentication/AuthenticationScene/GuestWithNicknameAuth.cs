@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Assets.Scripts.UI.Authentication
+namespace Assets.Scripts.UI.TestScenes.Authentication.AuthenticationScene
 {
     public class GuestWithNicknameAuth : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Assets.Scripts.UI.Authentication
+namespace Assets.Scripts.UI.TestScenes.Authentication.AuthenticationScene
 {
     [RequireComponent(typeof(Button))]
     public class SignOutButton : MonoBehaviour

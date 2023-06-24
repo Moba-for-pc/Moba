@@ -1,14 +1,25 @@
 using Assets.Scripts.UnityService;
+using System;
 using Unity.Services.Authentication;
+using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Authentication
 {
-    public class Authenticator : IAuthenticator
+    public class Authenticator : IAuthenticator, IInitializable
     {
+        public event Action Authenticated;
+        public event Action Deauthenticated;
 
         public Authenticator(IUnityService unityService)
         {
             unityService.InitIfNeededAsync();
+        }
+
+        public void Initialize()
+        {
+            AuthenticationService.Instance.SignedIn += OnSignedIn;
+            AuthenticationService.Instance.SignedOut += OnSignedOut;
         }
 
         public void Deauthenticate()
@@ -27,6 +38,22 @@ namespace Assets.Scripts.Authentication
         public bool IsAuthenticated()
         {
             return AuthenticationService.Instance.IsSignedIn;
+        }
+
+        private void OnSignedIn()
+        {
+            Authenticated?.Invoke();
+        }
+
+        private void OnSignedOut()
+        {
+            Deauthenticated?.Invoke();
+        }
+
+        ~ Authenticator()
+        {
+            AuthenticationService.Instance.SignedIn -= OnSignedIn;
+            AuthenticationService.Instance.SignedOut -= OnSignedOut;
         }
     }
 }

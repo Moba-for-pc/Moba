@@ -6,7 +6,7 @@ namespace Assets.Scripts.UnityService.DI
     {
         public override void InstallBindings()
         {
-            Container.Bind<IUnityService>().To<UnityServiceImpl>().AsSingle();
+            Container.Bind<IUnityService>().To<UnityServiceImpl>().AsTransient();
         }
     }
 }

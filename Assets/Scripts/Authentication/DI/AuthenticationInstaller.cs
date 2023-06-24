@@ -1,3 +1,4 @@
+using Assets.Scripts.Authentication.AuthenticationRequest;
 using Assets.Scripts.Authentication.GoogleAuthentication;
 using Assets.Scripts.Authentication.GuestAuthentication;
 using Assets.Scripts.Authentication.SteamAuthentication;
@@ -14,8 +15,9 @@ namespace Assets.Scripts.Authentication.DI
             Container.Bind<IGuestAuth>().To<GuestAuth>().AsTransient();
             Container.Bind<ISteamAuth>().To<SteamAuth>().AsTransient();
 
-            Container.Bind<IAuthenticator>().To<Authenticator>().AsTransient();
-            Debug.Log("Auth Dependencies injected");
+            Container.BindInterfacesTo<Authenticator>().AsSingle();
+
+            Container.Bind<IAuthRequest>().To<AuthRequest>().AsTransient();
         }
     }
 }

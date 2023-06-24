@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestScenes/AuthenticationTestScene.unity
+    path: Assets/Scenes/TestScenes/Authentication/AuthenticationTestScene.unity
     guid: 4ba38e0b3ebbac64d90c7f8634c92504
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/Authentication/AuthRequestScene.unity
+    guid: 008babee75e4abc4c81c9cad35fc257d
   m_configObjects: {}

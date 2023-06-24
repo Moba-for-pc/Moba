@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Unity.Services.Core;
 using UnityEngine;
 
@@ -6,11 +7,15 @@ namespace Assets.Scripts.UnityService
 {
     public class UnityServiceImpl : IUnityService
     {
+        public event Action ServicesInitialized;
+        
         public async Task InitIfNeededAsync()
         {
             if (UnityServices.State == ServicesInitializationState.Initialized)
                 return;
 
+            
+            
             await UnityServices.InitializeAsync();
         }
 

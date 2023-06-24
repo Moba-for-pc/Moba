@@ -7,7 +7,7 @@ namespace Assets.Scripts.Authentication.GoogleAuthentication
     {
         public event Action Authenticated;
 
-        public Task Authenticate()
+        public Task AuthenticateAsync()
         {
             throw new NotImplementedException();  //TODO подключить гугл сервисы
 

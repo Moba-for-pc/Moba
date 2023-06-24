@@ -7,7 +7,7 @@ namespace Assets.Scripts.Authentication.SteamAuthentication
     {
         public event Action Authenticated;
 
-        public Task Authenticate()
+        public Task AuthenticateAsync()
         {
             throw new System.NotImplementedException(); // TODO подулючить Steam сервисы
         }

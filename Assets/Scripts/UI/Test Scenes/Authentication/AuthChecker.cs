@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.UI.Authentication
+namespace Assets.Scripts.UI.TestScenes.Authentication.AuthenticationScene
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class AuthChecker : MonoBehaviour
@@ -18,14 +18,22 @@ namespace Assets.Scripts.UI.Authentication
             _authenticator = authenticator;
         }
 
-        private void Awake()
+        private void Start()
         {
             TryGetComponent(out _authStateText);
+            UpdateAuthState();
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            UpdateAuthState();
+            _authenticator.Authenticated += UpdateAuthState;
+            _authenticator.Deauthenticated += UpdateAuthState;
+        }
+
+        private void OnDisable()
+        {
+            _authenticator.Authenticated -= UpdateAuthState;
+            _authenticator.Deauthenticated -= UpdateAuthState;
         }
 
         private void UpdateAuthState()
