@@ -1,4 +1,5 @@
-using Lobby.Interfaces;
+using UI.Lobby;
+using UI.Lobby.Interfaces;
 using Zenject;
 
 namespace Lobby.DI
@@ -7,9 +8,9 @@ namespace Lobby.DI
     {
         public override void InstallBindings()
         {
-            Container.Bind<ILobbySystem>().To<LobbySystem>().AsSingle();
-            Container.Bind<ILobbyOwner>().To<LobbyOwner>().AsSingle();
-            Container.Bind<ILobbyMember>().To<LobbyMember>().AsSingle();
+            Container.BindInterfacesTo<LobbyService>().AsSingle();
+            Container.Bind<IPlayersPrinter>().To<LobbyPlayersPrinter>().AsSingle();
+            Container.Bind<ILobbiesPrinter>().To<LobbiesPrinter>().AsSingle();
         }
     }
 }

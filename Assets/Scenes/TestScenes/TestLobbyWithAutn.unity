@@ -1195,9 +1195,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478562865}
-  - component: {fileID: 478562868}
   - component: {fileID: 478562867}
   - component: {fileID: 478562866}
+  - component: {fileID: 478562869}
+  - component: {fileID: 478562868}
   m_Layer: 0
   m_Name: TestLobby
   m_TagString: Untagged
@@ -1232,7 +1233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff755bc5aca4fc396d81d8f975c74c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _refreshButton: {fileID: 1582733978}
 --- !u!114 &478562867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,6 +1249,9 @@ MonoBehaviour:
   _deleteLobbyButton: {fileID: 1434607172}
   _lobbyName: {fileID: 1498890427}
   _maxPlayers: {fileID: 2111756423}
+  _joinLobbyButton: {fileID: 892634314}
+  _exitLobbyButton: {fileID: 1166020120}
+  _lobbyCode: {fileID: 1876769964}
 --- !u!114 &478562868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,12 +1261,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 478562863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74950c0af0af4f2ca4faefde5a1f97bb, type: 3}
+  m_Script: {fileID: 11500000, guid: cff755bc5aca4fc396d81d8f975c74c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joinLobbyButton: {fileID: 892634314}
-  _exitLobbyButton: {fileID: 1166020120}
-  _lobbyCode: {fileID: 1876769964}
+--- !u!114 &478562869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478562863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f547a043c7e24a4a9dbeaf4956125fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _refreshButton: {fileID: 1582733978}
 --- !u!1 &481923475
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4868,7 @@ GameObject:
   - component: {fileID: 1876769966}
   - component: {fileID: 1876769964}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: LobbyCode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
