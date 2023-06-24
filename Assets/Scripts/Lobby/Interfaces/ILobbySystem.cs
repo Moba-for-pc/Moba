@@ -7,5 +7,6 @@ namespace Lobby.Interfaces
         void HandleLobbyHeartbeat();
         void PrintPlayers(Unity.Services.Lobbies.Models.Lobby lobby);
         void LobbiesList(QueryLobbiesOptions queryLobbiesOptions);
+        void RefreshLobbiesList();
     }
 }

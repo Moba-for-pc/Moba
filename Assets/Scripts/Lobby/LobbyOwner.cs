@@ -21,7 +21,7 @@ namespace Lobby
             catch (LobbyServiceException e){Debug.LogError(e);}
         }
 
-        public async void DeleteLobby(Unity.Services.Lobbies.Models.Lobby lobby)
+        public async void DeleteLobby()
         {
             try
             {

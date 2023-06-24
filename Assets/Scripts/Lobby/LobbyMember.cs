@@ -8,6 +8,7 @@ namespace Lobby
 {
     public class LobbyMember : ILobbyMember
     {
+        private Unity.Services.Lobbies.Models.Lobby _lobby;
         private ILobbySystem _lobbySystem;
         
         [Inject]
@@ -21,6 +22,7 @@ namespace Lobby
             try
             {
                 Unity.Services.Lobbies.Models.Lobby lobby = await Lobbies.Instance.JoinLobbyByCodeAsync(code);
+                _lobby = lobby;
                 Debug.Log("Joined lobby with name " + lobby.Name);
                 _lobbySystem.PrintPlayers(lobby);
             }
@@ -30,12 +32,12 @@ namespace Lobby
             }
         }
 
-        public async void ExitLobby(Unity.Services.Lobbies.Models.Lobby lobby)
+        public async void ExitLobby()
         {
             try
             {
-                await Lobbies.Instance.RemovePlayerAsync(lobby.Id, AuthenticationService.Instance.PlayerId);
-                Debug.Log($"Exit from {lobby.Name}");
+                await Lobbies.Instance.RemovePlayerAsync(_lobby.Id, AuthenticationService.Instance.PlayerId);
+                Debug.Log($"Exit from {_lobby.Name}");
             }
             catch (LobbyServiceException e) { Debug.LogError(e); }
         }

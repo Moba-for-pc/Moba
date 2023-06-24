@@ -60,5 +60,10 @@ namespace Lobby
                 Debug.Log(e);
             }
         }
+
+        public void RefreshLobbiesList()
+        {
+            LobbiesList(new QueryLobbiesOptions());
+        }
     }
 }
