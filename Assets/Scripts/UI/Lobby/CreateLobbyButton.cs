@@ -1,4 +1,3 @@
-using System;
 using Assets.Scripts.UnityService;
 using TMPro;
 using UnityEngine;
@@ -8,8 +7,10 @@ using Zenject;
 public class CreateLobbyButton : MonoBehaviour
 {
     [SerializeField] private Button _createNewLobbyButton;
+    [SerializeField] private Button _joinLobbyButton;
     [SerializeField] private TMP_InputField _lobbyName;
     [SerializeField] private TMP_InputField _maxPlayers;
+    [SerializeField] private TMP_InputField _lobbyCode;
     
     private ILobbyService _lobbyService;
 
@@ -23,6 +24,7 @@ public class CreateLobbyButton : MonoBehaviour
     private void Awake()
     {
         _createNewLobbyButton.onClick.AddListener(CreateNewLobby);
+        _joinLobbyButton.onClick.AddListener(JoinLobby);
     }
 
     private void CreateNewLobby()
@@ -30,5 +32,9 @@ public class CreateLobbyButton : MonoBehaviour
         int maxPlayers = int.Parse(_maxPlayers.text);
         _lobbyService.CreateLobby(_lobbyName.text, maxPlayers);
 
+    }
+    private void JoinLobby()
+    {
+        _lobbyService.JoinLobbyByCode(_lobbyCode.text);
     }
 }
