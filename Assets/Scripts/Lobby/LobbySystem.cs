@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Lobby.Interfaces;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
@@ -13,9 +12,9 @@ namespace Lobby
         private float _heartbeatTimer;
         
         [Inject]
-        private LobbySystem(Unity.Services.Lobbies.Models.Lobby hostLobby)
+        private LobbySystem(ILobbyOwner lobbyOwner)
         {
-            _hostLobby = hostLobby;
+            _hostLobby = lobbyOwner.GetHostLobby();
         }
         
         public void FixedTick() => HandleLobbyHeartbeat();

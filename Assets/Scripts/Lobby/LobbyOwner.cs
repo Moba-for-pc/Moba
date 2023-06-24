@@ -1,4 +1,4 @@
-using Assets.Scripts.Lobby.Interfaces;
+using Lobby.Interfaces;
 using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
@@ -9,7 +9,7 @@ namespace Lobby
     public class LobbyOwner : ILobbyOwner
     {
         private Unity.Services.Lobbies.Models.Lobby _hostLobby;
-        
+
         public async void CreateLobby(string lobbyName, int maxPlayers, CreateLobbyOptions createLobbyOptions)
         {
             try
@@ -40,5 +40,7 @@ namespace Lobby
             }
             catch (LobbyServiceException e) { Debug.LogError(e); }
         }
+        
+        public Unity.Services.Lobbies.Models.Lobby GetHostLobby(){return _hostLobby;} 
     }
 }

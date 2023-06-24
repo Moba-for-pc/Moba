@@ -8,17 +8,11 @@ namespace UI.Lobby
     public class LobbySystemUI : MonoBehaviour
     {
         [SerializeField] private Button _refreshButton;
-        private ILobbySystem _lobbySystem;
 
         [Inject]
         private void Construct(ILobbySystem lobbySystem)
         {
-            _lobbySystem = lobbySystem;
-        }
-
-        private void Start()
-        {
-            _refreshButton.onClick.AddListener(_lobbySystem.RefreshLobbiesList);
+            _refreshButton.onClick.AddListener(lobbySystem.RefreshLobbiesList);
         }
     }
 }

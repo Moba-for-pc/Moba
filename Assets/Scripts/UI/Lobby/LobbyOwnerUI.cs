@@ -1,5 +1,4 @@
-using Assets.Scripts.Lobby.Interfaces;
-using Assets.Scripts.UnityService;
+using Lobby.Interfaces;
 using TMPro;
 using Unity.Services.Lobbies;
 using UnityEngine;
@@ -15,16 +14,11 @@ namespace UI.Lobby
         [SerializeField] private TMP_InputField _lobbyName;
         [SerializeField] private TMP_InputField _maxPlayers;
         private ILobbyOwner _lobbyOwner;
-    
-
+        
         [Inject]
-        public void Init(ILobbyOwner lobbyOwner)
+        private void Construct(ILobbyOwner lobbyOwner)
         {
             _lobbyOwner = lobbyOwner;
-        }
-
-        private void Start()
-        {
             _createNewLobbyButton.onClick.AddListener(CreateNewLobby);
             _deleteLobbyButton.onClick.AddListener(_lobbyOwner.DeleteLobby);
         }

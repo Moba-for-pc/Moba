@@ -14,17 +14,13 @@ namespace UI.Lobby
         private ILobbyMember _lobbyMember;
 
         [Inject]
-        public void Construct(ILobbyMember lobbyMember)
+        private void Construct(ILobbyMember lobbyMember)
         {
             _lobbyMember = lobbyMember;
-        }
-
-        private void Start()
-        {
             _joinLobbyButton.onClick.AddListener(JoinLobby);
             _exitLobbyButton.onClick.AddListener(_lobbyMember.ExitLobby);
         }
-        
+
         private void JoinLobby() => _lobbyMember.JoinLobbyByCode(_lobbyCode.text);
     }
 }

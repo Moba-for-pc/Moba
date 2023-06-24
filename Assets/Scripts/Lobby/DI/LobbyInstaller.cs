@@ -1,11 +1,9 @@
-using Assets.Scripts.Lobby.Interfaces;
-using Lobby;
 using Lobby.Interfaces;
 using Zenject;
 
-namespace Assets.Scripts.Lobby.DI
+namespace Lobby.DI
 {
-    internal class LobbyInstaller : MonoInstaller<LobbyInstaller>
+    internal class LobbyInstaller : Installer<LobbyInstaller>
     {
         public override void InstallBindings()
         {
