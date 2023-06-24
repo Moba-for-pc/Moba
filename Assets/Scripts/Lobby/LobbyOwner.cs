@@ -1,5 +1,4 @@
 using Lobby.Interfaces;
-using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
@@ -35,7 +34,7 @@ namespace Lobby
         {
             try
             {
-                await Lobbies.Instance.RemovePlayerAsync(_hostLobby.Id, AuthenticationService.Instance.PlayerId);
+                await Lobbies.Instance.RemovePlayerAsync(_hostLobby.Id, player.Id);
                 Debug.Log($"Player {player.Data["PlayerName"].Value} remove from {_hostLobby.Name}");
             }
             catch (LobbyServiceException e) { Debug.LogError(e); }
