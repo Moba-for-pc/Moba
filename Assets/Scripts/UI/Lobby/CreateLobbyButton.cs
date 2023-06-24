@@ -22,7 +22,7 @@ public class CreateLobbyButton : MonoBehaviour
         _createNewLobbyButton.onClick.AddListener(CreateNewLobby);
     }
 
-    private void CreateNewLobby() //Not working
+    private void CreateNewLobby()
     {
         int maxPlayers = int.Parse(_maxPlayers.text);
         _lobbyService.CreateLobby(_lobbyName.text, maxPlayers);

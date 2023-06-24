@@ -6,11 +6,8 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using Zenject;
 
-public class TestLobby : MonoBehaviour, ILobbyService
+public class TestLobby : ILobbyService
 {
-    public TMP_InputField InputLobbyCode;
-    public TextMeshProUGUI LobbyCode;
-    
     private Lobby _hostLobby;
     private float _heartbeatTimer;
     private string _playerName;
@@ -21,17 +18,18 @@ public class TestLobby : MonoBehaviour, ILobbyService
     public void Init(IUnityService service)
     {
         _service = service;
+        service.InitIfNeededAsync();//
     }
 
     private void Awake()
     {
-        _playerName = "Player" + UnityEngine.Random.Range(0, 1000);
-        Debug.Log(_playerName + " successfully logged in"); // test
+        //_playerName = "Player" + UnityEngine.Random.Range(0, 1000);
+        //Debug.Log(_playerName + " successfully logged in"); // test
     }
 
     private void Update()
     {
-        HandleLobbyHeartbeat();
+        //HandleLobbyHeartbeat();
     }
 
     private async void HandleLobbyHeartbeat()
@@ -68,7 +66,8 @@ public class TestLobby : MonoBehaviour, ILobbyService
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, createLobbyOptions);
             _hostLobby = lobby;
             Debug.Log(lobby.Name + $" lobby created with {lobby.MaxPlayers} max players. Lobby code: " + lobby.LobbyCode);
-            LobbyCode.text = lobby.LobbyCode;
+            //LobbyCode.text = lobby.LobbyCode;
+            PrintPlayers(_hostLobby);
         }
         catch (LobbyServiceException e)
         {
@@ -78,7 +77,7 @@ public class TestLobby : MonoBehaviour, ILobbyService
 
     public async void JoinLobbyByCode(string lobbyCode)
     {
-        lobbyCode = InputLobbyCode.text;
+        //lobbyCode = InputLobbyCode.text;
         try
         {
             await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode);
@@ -90,7 +89,7 @@ public class TestLobby : MonoBehaviour, ILobbyService
         }
     }
 
-    public async void GetLobbiesList()
+    public async void LobbiesList()
     {
         try
         {

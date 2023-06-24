@@ -1,4 +1,5 @@
 using Assets.Scripts.Authentication.DI;
+using Assets.Scripts.Lobby.DI;
 using Assets.Scripts.UnityService.DI;
 using Zenject;
 
@@ -11,6 +12,7 @@ namespace Assets.Scripts
         {
             AuthenticationInstaller.Install(Container);
             UnityServiceInstaller.Install(Container);
+            LobbyInstaller.Install(Container);
         }
     }
 }
