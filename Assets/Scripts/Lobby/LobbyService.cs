@@ -2,7 +2,6 @@ using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using UnityEngine;
 using Zenject;
-using ILobbyService = Assets.Scripts.Lobby;
 
 namespace Assets.Scripts.Lobby
 {
@@ -10,7 +9,6 @@ namespace Assets.Scripts.Lobby
     {
         private Unity.Services.Lobbies.Models.Lobby _currentLobby;
         private float _heartbeatTimer;
-        private ILobbyService _lobbyServiceImplementation;
 
         #region Heartbeat
         
