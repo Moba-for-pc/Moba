@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UI.Lobby.Interfaces;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
@@ -36,7 +37,19 @@ namespace UI.Lobby
 
         public void FilterOptions()
         {
-            _queryLobbiesOptions = new QueryLobbiesOptions();
+            _queryLobbiesOptions = new QueryLobbiesOptions
+            {
+                Count = 10,
+                //Skip = 5,
+                Filters = new List<QueryFilter>
+                {
+                    new QueryFilter(QueryFilter.FieldOptions.AvailableSlots, "0", QueryFilter.OpOptions.GT)
+                },
+                Order = new List<QueryOrder>
+                {
+                    new QueryOrder(false, QueryOrder.FieldOptions.Created)
+                }
+            };
         }
     }
 }

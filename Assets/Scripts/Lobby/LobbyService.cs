@@ -1,3 +1,4 @@
+using System;
 using Unity.Services.Lobbies;
 using UnityEngine;
 using Zenject;
@@ -39,6 +40,16 @@ namespace Lobby
                 _hostLobby = lobby;
                 
                 Debug.Log(lobby.Name + $" lobby created with {lobby.MaxPlayers} max players. Lobby code: " + lobby.LobbyCode);
+            }
+            catch (LobbyServiceException e){ Debug.LogError(e); }
+        }
+
+        public async void KickPlayer() // No usage, waiting for UI
+        {
+            try
+            {
+                await Unity.Services.Lobbies.LobbyService.Instance.RemovePlayerAsync(_hostLobby.Id,
+                    _hostLobby.Players[1].Id);
             }
             catch (LobbyServiceException e){ Debug.LogError(e); }
         }
