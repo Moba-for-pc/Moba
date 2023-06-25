@@ -1,11 +1,10 @@
 using Unity.Services.Lobbies;
 
-namespace Lobby.Interfaces
+namespace Assets.Scripts.Lobby
 {
     public interface ILobbyService
     {
         void CreateLobby(string lobbyName, int maxPlayers, CreateLobbyOptions createLobbyOptions);
-        void KickPlayer();
         void DeleteLobby();
         void JoinLobbyByCode(string code);
         void ExitLobby(string id);

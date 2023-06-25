@@ -1,6 +1,6 @@
 using Assets.Scripts.Authentication.DI;
 using Assets.Scripts.UnityService.DI;
-using Lobby.DI;
+using Assets.Scripts.Lobby.DI;
 using Zenject;
 
 namespace Assets.Scripts

@@ -1,23 +1,25 @@
-using System;
+using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using UnityEngine;
 using Zenject;
-using ILobbyService = Lobby.Interfaces.ILobbyService;
+using ILobbyService = Assets.Scripts.Lobby;
 
-namespace Lobby
+namespace Assets.Scripts.Lobby
 {
     public class LobbyService : ILobbyService, IFixedTickable
     {
-        private Unity.Services.Lobbies.Models.Lobby _hostLobby;
+        private Unity.Services.Lobbies.Models.Lobby _currentLobby;
         private float _heartbeatTimer;
-        
+        private ILobbyService _lobbyServiceImplementation;
+
         #region Heartbeat
         
         public void FixedTick() => HandleLobbyHeartbeat();
 
         private async void HandleLobbyHeartbeat()
         {
-            if (_hostLobby == null) return;
+            if (_currentLobby == null) return;
+            if (_currentLobby.HostId == AuthenticationService.Instance.PlayerId) return;
         
             _heartbeatTimer -= Time.fixedDeltaTime;
             if (_heartbeatTimer <= 0f)
@@ -25,7 +27,7 @@ namespace Lobby
                 float heartbeatTimerMax = 15;
                 _heartbeatTimer = heartbeatTimerMax;
 
-                await Unity.Services.Lobbies.LobbyService.Instance.SendHeartbeatPingAsync(_hostLobby.Id);
+                await Unity.Services.Lobbies.LobbyService.Instance.SendHeartbeatPingAsync(_currentLobby.Id);
             }
         }
         
@@ -37,19 +39,9 @@ namespace Lobby
             {
                 Unity.Services.Lobbies.Models.
                     Lobby lobby = await Unity.Services.Lobbies.LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, createLobbyOptions);
-                _hostLobby = lobby;
+                _currentLobby = lobby;
                 
                 Debug.Log(lobby.Name + $" lobby created with {lobby.MaxPlayers} max players. Lobby code: " + lobby.LobbyCode);
-            }
-            catch (LobbyServiceException e){ Debug.LogError(e); }
-        }
-
-        public async void KickPlayer() // No usage, waiting for UI
-        {
-            try
-            {
-                await Unity.Services.Lobbies.LobbyService.Instance.RemovePlayerAsync(_hostLobby.Id,
-                    _hostLobby.Players[1].Id);
             }
             catch (LobbyServiceException e){ Debug.LogError(e); }
         }
@@ -58,8 +50,8 @@ namespace Lobby
         {
             try
             {
-                await Lobbies.Instance.DeleteLobbyAsync(_hostLobby.Id);
-                Debug.Log($"Lobby {_hostLobby.Name} deleted");
+                await Lobbies.Instance.DeleteLobbyAsync(_currentLobby.Id);
+                Debug.Log($"Lobby {_currentLobby.Name} deleted");
             }
             catch (LobbyServiceException e){Debug.LogError(e);}
         }
@@ -69,7 +61,7 @@ namespace Lobby
             try
             {
                 Unity.Services.Lobbies.Models.Lobby lobby = await Lobbies.Instance.JoinLobbyByCodeAsync(code);
-                _hostLobby = lobby;
+                _currentLobby = lobby;
                 
                 Debug.Log("Joined lobby with name " + lobby.Name);
             }
@@ -80,12 +72,12 @@ namespace Lobby
         {
             try
             {
-                await Lobbies.Instance.RemovePlayerAsync(_hostLobby.Id, id);
-                Debug.Log($"Exit from {_hostLobby.Name}");
+                await Lobbies.Instance.RemovePlayerAsync(_currentLobby.Id, id);
+                Debug.Log($"Exit from {_currentLobby.Name}");
             }
             catch (LobbyServiceException e) { Debug.LogError(e); }
         }
         
-        public Unity.Services.Lobbies.Models.Lobby GetHostLobby() {return _hostLobby;}
+        public Unity.Services.Lobbies.Models.Lobby GetHostLobby() {return _currentLobby;}
     }
 }

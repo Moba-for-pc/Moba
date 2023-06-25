@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using UI.Lobby.Interfaces;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Lobby
+namespace Assets.Scripts.UI.Lobby
 {
     public class LobbiesPrinter : MonoBehaviour, ILobbiesPrinter
     {
