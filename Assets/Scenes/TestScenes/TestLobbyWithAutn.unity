@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1195,10 +1195,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478562865}
-  - component: {fileID: 478562867}
   - component: {fileID: 478562866}
   - component: {fileID: 478562869}
   - component: {fileID: 478562868}
+  - component: {fileID: 478562873}
+  - component: {fileID: 478562872}
+  - component: {fileID: 478562871}
+  - component: {fileID: 478562870}
   m_Layer: 0
   m_Name: TestLobby
   m_TagString: Untagged
@@ -1233,25 +1236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff755bc5aca4fc396d81d8f975c74c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &478562867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478562863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0beaae14488c4d4d97e72e14135af6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _createNewLobbyButton: {fileID: 1010992798}
-  _deleteLobbyButton: {fileID: 1434607172}
-  _lobbyName: {fileID: 1498890427}
-  _maxPlayers: {fileID: 2111756423}
-  _joinLobbyButton: {fileID: 892634314}
-  _exitLobbyButton: {fileID: 1166020120}
-  _lobbyCode: {fileID: 1876769964}
 --- !u!114 &478562868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,6 +1261,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _refreshButton: {fileID: 1582733978}
+--- !u!114 &478562870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478562863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324ae9428d0fa9141a19cac789ceef96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deleteLobbyButton: {fileID: 1434607172}
+--- !u!114 &478562871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478562863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef32c0897c787754eb7febaa35e2c31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exitLobbyButton: {fileID: 1166020120}
+--- !u!114 &478562872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478562863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9608e05e18c1c454ba75e281014fea45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lobbyCode: {fileID: 1876769964}
+  _joinLobbyButton: {fileID: 892634314}
+--- !u!114 &478562873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478562863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712750362067bc740ac8e8bc8d422286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _createNewLobbyButton: {fileID: 1010992798}
+  _lobbyName: {fileID: 1498890427}
+  _maxPlayers: {fileID: 2111756423}
 --- !u!1 &481923475
 GameObject:
   m_ObjectHideFlags: 0
