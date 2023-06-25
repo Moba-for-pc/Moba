@@ -9,7 +9,6 @@ namespace Assets.Scripts.Lobby
     {
         private Unity.Services.Lobbies.Models.Lobby _hostLobby;
         private float _heartbeatTimer;
-        private ILobbyService _lobbyServiceImplementation;
 
         #region Heartbeat
         
