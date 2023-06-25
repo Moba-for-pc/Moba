@@ -8,7 +8,7 @@ namespace Assets.Scripts.UI.Lobby
 {
     public class JoinLobbyButton : MonoBehaviour
     {
-        [SerializeField] private TMP_InputField _lobbyCode;
+        [SerializeField] private TMP_InputField _lobbyCodeInputField;
         [SerializeField] private Button _joinLobbyButton;
         
         private ILobbyService _lobbyService;
@@ -21,6 +21,6 @@ namespace Assets.Scripts.UI.Lobby
             _joinLobbyButton.onClick.AddListener(JoinLobby);
         }
         
-        private void JoinLobby() => _lobbyService.JoinLobbyByCode(_lobbyCode.text);
+        private void JoinLobby() => _lobbyService.JoinLobbyByCode(_lobbyCodeInputField.text);
     }
 }

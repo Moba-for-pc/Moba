@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Lobby
 {
-    public class LobbiesPrinter : MonoBehaviour, ILobbiesPrinter
+    public class LobbiesDisplay : MonoBehaviour, ILobbiesPrinter
     {
         [SerializeField] private Button _refreshButton;
         private QueryLobbiesOptions _queryLobbiesOptions;

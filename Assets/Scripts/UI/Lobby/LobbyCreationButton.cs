@@ -10,8 +10,8 @@ namespace Assets.Scripts.UI.Lobby
     public class LobbyCreationButton : MonoBehaviour
     {
         [SerializeField] private Button _createNewLobbyButton;
-        [SerializeField] private TMP_InputField _lobbyName;
-        [SerializeField] private TMP_InputField _maxPlayers;
+        [SerializeField] private TMP_InputField _lobbyNameInputField;
+        [SerializeField] private TMP_InputField _maxPlayersInputField;
 
         private ILobbyService _lobbyService;
 
@@ -25,9 +25,9 @@ namespace Assets.Scripts.UI.Lobby
 
         private void CreateNewLobby()
         {
-            int maxPlayers = int.Parse(_maxPlayers.text);
+            int maxPlayers = int.Parse(_maxPlayersInputField.text);
 
-            _lobbyService.CreateLobby(_lobbyName.text, maxPlayers, new CreateLobbyOptions());
+            _lobbyService.CreateLobby(_lobbyNameInputField.text, maxPlayers, new CreateLobbyOptions());
         }
     }
 }

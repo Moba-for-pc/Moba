@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Assets.Scripts.UI.Lobby
 {
-    public class LobbyPlayersPrinter : MonoBehaviour, IPlayersPrinter
+    public class LobbyPlayersDisplay : MonoBehaviour, IPlayersPrinter
     {
         private ILobbyService _lobbyService;
 

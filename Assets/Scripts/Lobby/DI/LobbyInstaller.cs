@@ -8,8 +8,8 @@ namespace Assets.Scripts.Lobby.DI
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<LobbyService>().AsSingle();
-            Container.Bind<IPlayersPrinter>().To<LobbyPlayersPrinter>().AsSingle();
-            Container.Bind<ILobbiesPrinter>().To<LobbiesPrinter>().AsSingle();
+            Container.Bind<IPlayersPrinter>().To<LobbyPlayersDisplay>().AsSingle();
+            Container.Bind<ILobbiesPrinter>().To<LobbiesDisplay>().AsSingle();
         }
     }
 }
