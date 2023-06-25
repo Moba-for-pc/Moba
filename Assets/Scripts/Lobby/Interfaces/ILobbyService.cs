@@ -1,6 +1,6 @@
 using Unity.Services.Lobbies;
 
-namespace Lobby.Interfaces
+namespace Assets.Scripts.Lobby.Interfaces
 {
     public interface ILobbyService
     {

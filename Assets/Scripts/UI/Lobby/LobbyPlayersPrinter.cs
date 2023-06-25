@@ -1,10 +1,10 @@
-using Lobby.Interfaces;
-using UI.Lobby.Interfaces;
+using Assets.Scripts.UI.Lobby.Interfaces;
+using Assets.Scripts.Lobby.Interfaces;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using Zenject;
 
-namespace UI.Lobby
+namespace Assets.Scripts.UI.Lobby
 {
     public class LobbyPlayersPrinter : MonoBehaviour, IPlayersPrinter
     {

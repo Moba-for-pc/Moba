@@ -1,4 +1,4 @@
-namespace UI.Lobby.Interfaces
+namespace Assets.Scripts.UI.Lobby.Interfaces
 {
     public interface IPlayersPrinter
     {

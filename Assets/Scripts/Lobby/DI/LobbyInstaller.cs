@@ -1,8 +1,8 @@
-using UI.Lobby;
-using UI.Lobby.Interfaces;
+using Assets.Scripts.UI.Lobby;
+using Assets.Scripts.UI.Lobby.Interfaces;
 using Zenject;
 
-namespace Lobby.DI
+namespace Assets.Scripts.Lobby.DI
 {
     internal class LobbyInstaller : Installer<LobbyInstaller>
     {

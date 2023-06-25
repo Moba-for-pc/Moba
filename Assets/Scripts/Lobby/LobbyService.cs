@@ -1,16 +1,16 @@
-using System;
+using ILobbyService = Assets.Scripts.Lobby.Interfaces.ILobbyService;
 using Unity.Services.Lobbies;
 using UnityEngine;
 using Zenject;
-using ILobbyService = Lobby.Interfaces.ILobbyService;
 
-namespace Lobby
+namespace Assets.Scripts.Lobby
 {
     public class LobbyService : ILobbyService, IFixedTickable
     {
         private Unity.Services.Lobbies.Models.Lobby _hostLobby;
         private float _heartbeatTimer;
-        
+        private ILobbyService _lobbyServiceImplementation;
+
         #region Heartbeat
         
         public void FixedTick() => HandleLobbyHeartbeat();

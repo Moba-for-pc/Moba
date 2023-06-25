@@ -4,9 +4,9 @@ using Unity.Services.Lobbies;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using ILobbyService = Lobby.Interfaces.ILobbyService;
+using ILobbyService = Assets.Scripts.Lobby.Interfaces.ILobbyService;
 
-namespace UI.Lobby
+namespace Assets.Scripts.UI.Lobby
 {
     public class LobbyServiceUI : MonoBehaviour
     {
