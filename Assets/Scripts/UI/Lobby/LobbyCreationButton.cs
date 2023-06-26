@@ -1,6 +1,6 @@
 using TMPro;
 using Unity.Services.Lobbies;
-using Unity.Services.Lobbies.Builder;
+using Unity.Services.Lobbies.Builders;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,11 +15,13 @@ namespace Assets.Scripts.UI.Lobby
         [SerializeField] private TMP_InputField _maxPlayersInputField;
 
         private ILobbyService _lobbyService;
+        private LobbyOptionsBuilderImp _lobbyOptionsBuilder;
 
         [Inject]
         private void Init(ILobbyService lobbyService)
         {
             _lobbyService = lobbyService;
+            _lobbyOptionsBuilder = new LobbyOptionsBuilderImp();
 
             _createNewLobbyButton.onClick.AddListener(CreateNewLobby);
         }
@@ -27,15 +29,8 @@ namespace Assets.Scripts.UI.Lobby
         private void CreateNewLobby()
         {
             int maxPlayers = int.Parse(_maxPlayersInputField.text);
-            
-            CreateLobbyOptions lobbyOptions = new CreateLobbyOptionsBuilder()
-                .Reset()
-                .SetIsPrivate(false)
-                //.SetPlayer(None)
-                //.SetData(None)
-                .Build();
+            CreateLobbyOptions lobbyOptions = _lobbyOptionsBuilder.BuildLobbyOptions();
 
-            
             _lobbyService.CreateLobby(_lobbyNameInputField.text, maxPlayers, lobbyOptions);
         }
     }

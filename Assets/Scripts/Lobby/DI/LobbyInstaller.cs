@@ -9,7 +9,7 @@ namespace Assets.Scripts.Lobby.DI
         {
             Container.BindInterfacesTo<LobbyService>().AsSingle();
             Container.Bind<IPlayersPrinter>().To<LobbyPlayersDisplay>().AsSingle();
-            Container.Bind<ILobbiesPrinter>().To<LobbiesDisplay>().AsSingle();
+            Container.Bind<ILobbiesDisplay>().To<LobbiesDisplay>().AsSingle();
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Unity.Services.Lobbies.Models;
 
-namespace Unity.Services.Lobbies.Builder
+namespace Unity.Services.Lobbies.Builders
 {
     public class QueryLobbiesOptionsBuilder
     {
@@ -18,7 +18,7 @@ namespace Unity.Services.Lobbies.Builder
             return this;
         }
 
-        public QueryLobbiesOptionsBuilder SetSkip(int skip)
+        public QueryLobbiesOptionsBuilder SetSkipValue(int skip)
         {
             _queryLobbiesOptions.Skip = skip;
             return this;

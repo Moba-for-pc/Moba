@@ -1,8 +1,8 @@
 namespace Assets.Scripts.UI.Lobby
 {
-    public interface ILobbiesPrinter
+    public interface ILobbiesDisplay
     {
-        void PrintLobbies();
+        void DisplayLobbies();
         void FilterOptions();
     }
 }

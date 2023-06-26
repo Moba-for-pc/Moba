@@ -1,26 +1,26 @@
 using Unity.Services.Lobbies;
-using Unity.Services.Lobbies.Builder;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Lobby
 {
-    public class LobbiesDisplay : MonoBehaviour, ILobbiesPrinter
+    public class LobbiesDisplay : MonoBehaviour, ILobbiesDisplay
     {
         [SerializeField] private Button _refreshButton;
-        private QueryLobbiesOptions _queryLobbiesOptions;
+        private QueryLobbiesOptions _lobbiesOptions;
+        private QueryLobbiesOptionsBuilderImp _queryLobbiesOptions;
 
         private void Start()
         {
-            _refreshButton.onClick.AddListener(PrintLobbies);
+            _refreshButton.onClick.AddListener(DisplayLobbies);
         }
         
-        public async void PrintLobbies()
+        public async void DisplayLobbies()
         {
             try
             {
-                QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(_queryLobbiesOptions);
+                QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(_lobbiesOptions);
             
                 Debug.Log("Lobbies found: " + queryResponse.Results.Count);
                 foreach (Unity.Services.Lobbies.Models.Lobby lobby in queryResponse.Results)
@@ -34,17 +34,9 @@ namespace Assets.Scripts.UI.Lobby
             }
         }
 
-        public void FilterOptions()
+        public void FilterOptions()// Didnt get around to do or think something here
         {
-            _queryLobbiesOptions = new QueryLobbiesOptionsBuilder()
-                .Reset()
-                .SetCount(20)
-                //.SetSkip(None)
-                //.SetSampleResults(None)
-                //.SetFilters(None)
-                //.SetOrder(None)
-                //.SetContinuationToken(None)
-                .Build();
+            _queryLobbiesOptions = new QueryLobbiesOptionsBuilderImp();
         }
     }
 }
