@@ -22,7 +22,8 @@ namespace Assets.Scripts.UI.TestScenes.Authentication.AuthenticationScene
         {
             TryGetComponent(out _signOutButton);
 
-            _signOutButton.onClick.AddListener(() => {
+            _signOutButton.onClick.AddListener(() =>
+            {
                 SignOut();
             });
         }

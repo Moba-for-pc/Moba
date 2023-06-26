@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts.Authentication.AuthenticationRequest
+﻿namespace Assets.Scripts.Authentication.AuthenticationRequest
 {
     public interface IAuthRequest
     {

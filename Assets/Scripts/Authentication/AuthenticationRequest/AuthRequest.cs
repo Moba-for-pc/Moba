@@ -10,8 +10,8 @@ namespace Assets.Scripts.Authentication.AuthenticationRequest
         private int _sceneToRedirectWhenAuthDoneBuildIndex;
         private IAuthenticator _authenticator;
 
-        public AuthRequest(IAuthenticator authenticator) 
-        { 
+        public AuthRequest(IAuthenticator authenticator)
+        {
             _authenticator = authenticator;
         }
 
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Authentication.AuthenticationRequest
                 Debug.Log(ExceptionMessages.ALREADY_AUTHENTICATED);
                 return;
             }
-            
+
             _authenticator.Authenticated += OnAuthenticated;
             _sceneToRedirectWhenAuthDoneBuildIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(AUTH_SCENE_NAME, LoadSceneMode.Single);

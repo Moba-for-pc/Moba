@@ -22,7 +22,8 @@ namespace Assets.Scripts.UI.TestScenes.Authentication.AuthenticationScene
 
         private void Awake()
         {
-            _startAuthButton.onClick.AddListener(async () => {
+            _startAuthButton.onClick.AddListener(async () =>
+            {
                 await _guestAuth.AuthenticateWithUsernameAsync(_tokenInput.text);
             });
         }

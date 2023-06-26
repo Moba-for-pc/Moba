@@ -23,7 +23,7 @@ public class FastAuthRequest : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // добавить чистку ссылок, реквест не удаляется при уничтожении объекта
         }
     }
 }

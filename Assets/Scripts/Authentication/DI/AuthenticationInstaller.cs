@@ -2,7 +2,6 @@ using Assets.Scripts.Authentication.AuthenticationRequest;
 using Assets.Scripts.Authentication.GoogleAuthentication;
 using Assets.Scripts.Authentication.GuestAuthentication;
 using Assets.Scripts.Authentication.SteamAuthentication;
-using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Authentication.DI

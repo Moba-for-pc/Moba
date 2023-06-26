@@ -1,7 +1,6 @@
 using Assets.Scripts.UnityService;
 using System;
 using Unity.Services.Authentication;
-using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Authentication
@@ -50,7 +49,7 @@ namespace Assets.Scripts.Authentication
             Deauthenticated?.Invoke();
         }
 
-        ~ Authenticator()
+        ~Authenticator()
         {
             AuthenticationService.Instance.SignedIn -= OnSignedIn;
             AuthenticationService.Instance.SignedOut -= OnSignedOut;
