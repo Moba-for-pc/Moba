@@ -1,5 +1,6 @@
 using TMPro;
 using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Builder;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -26,8 +27,16 @@ namespace Assets.Scripts.UI.Lobby
         private void CreateNewLobby()
         {
             int maxPlayers = int.Parse(_maxPlayersInputField.text);
+            
+            CreateLobbyOptions lobbyOptions = new CreateLobbyOptionsBuilder()
+                .Reset()
+                .SetIsPrivate(false)
+                //.SetPlayer(None)
+                //.SetData(None)
+                .Build();
 
-            _lobbyService.CreateLobby(_lobbyNameInputField.text, maxPlayers, new CreateLobbyOptions());
+            
+            _lobbyService.CreateLobby(_lobbyNameInputField.text, maxPlayers, lobbyOptions);
         }
     }
 }
