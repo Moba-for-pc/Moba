@@ -1,15 +1,14 @@
-using Assets.Scripts.UI.Lobby;
+using Unity.Services.Lobbies.Builders;
 using Zenject;
 
-namespace Assets.Scripts.Lobby.DI
+namespace Assets.Scripts.LobbyService.DI
 {
     internal class LobbyInstaller : Installer<LobbyInstaller>
     {
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<LobbyService>().AsSingle();
-            Container.Bind<IPlayersPrinter>().To<LobbyPlayersDisplay>().AsSingle();
-            Container.Bind<ILobbiesDisplay>().To<LobbiesDisplay>().AsSingle();
+            Container.Bind<LobbyOptionsBuilder>().AsSingle();
         }
     }
 }

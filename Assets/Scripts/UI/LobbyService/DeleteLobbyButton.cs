@@ -1,9 +1,9 @@
-using Assets.Scripts.Lobby;
+using Assets.Scripts.LobbyService;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Assets.Scripts.UI.Lobby
+namespace Assets.Scripts.UI.LobbyService
 {
     public class DeleteLobbyButton : MonoBehaviour
     {

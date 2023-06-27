@@ -1,29 +1,31 @@
 using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Builders;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.Lobby
+namespace Assets.Scripts.UI.LobbyService
 {
-    public class LobbiesDisplay : MonoBehaviour, ILobbiesDisplay
+    public class LobbiesDisplay : MonoBehaviour
     {
         [SerializeField] private Button _refreshButton;
-        private QueryLobbiesOptions _lobbiesOptions;
-        private QueryLobbiesOptionsBuilderImp _queryLobbiesOptions;
+        private QueryLobbiesOptionsBuilder _queryLobbiesOptions;
 
         private void Start()
         {
             _refreshButton.onClick.AddListener(DisplayLobbies);
         }
         
-        public async void DisplayLobbies()
+        private async void DisplayLobbies()
         {
             try
             {
-                QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(_lobbiesOptions);
+                QueryLobbiesOptions lobbiesFilter = FilterOptions();
+                
+                QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(lobbiesFilter);
             
                 Debug.Log("Lobbies found: " + queryResponse.Results.Count);
-                foreach (Unity.Services.Lobbies.Models.Lobby lobby in queryResponse.Results)
+                foreach (Lobby lobby in queryResponse.Results)
                 {
                     Debug.Log($"{lobby.Name}, max players {lobby.MaxPlayers}");
                 }
@@ -34,9 +36,10 @@ namespace Assets.Scripts.UI.Lobby
             }
         }
 
-        public void FilterOptions()// Didnt get around to do or think something here
+        private QueryLobbiesOptions FilterOptions()
         {
-            _queryLobbiesOptions = new QueryLobbiesOptionsBuilderImp();
+            _queryLobbiesOptions = new QueryLobbiesOptionsBuilder().SetCount(5);
+            return _queryLobbiesOptions.Build();
         }
     }
 }
