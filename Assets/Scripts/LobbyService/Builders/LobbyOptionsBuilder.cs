@@ -7,11 +7,6 @@ namespace Unity.Services.Lobbies.Builders
     {
         private CreateLobbyOptions _lobbyOptions;
 
-        public LobbyOptionsBuilder()
-        {
-            _lobbyOptions = new CreateLobbyOptions();
-        }
-
         public LobbyOptionsBuilder SetIsPrivate(bool? isPrivate)
         {
             _lobbyOptions.IsPrivate = isPrivate;
@@ -29,6 +24,7 @@ namespace Unity.Services.Lobbies.Builders
             _lobbyOptions.Data = data;
             return this;
         }
+        
         public LobbyOptionsBuilder Reset()
         {
             _lobbyOptions = new CreateLobbyOptions();

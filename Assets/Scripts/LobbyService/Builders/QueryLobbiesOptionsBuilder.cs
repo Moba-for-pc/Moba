@@ -7,11 +7,6 @@ namespace Unity.Services.Lobbies.Builders
     {
         private QueryLobbiesOptions _queryLobbiesOptions;
 
-        public QueryLobbiesOptionsBuilder()
-        {
-            _queryLobbiesOptions = new QueryLobbiesOptions();
-        }
-
         public QueryLobbiesOptionsBuilder SetCount(int count)
         {
             _queryLobbiesOptions.Count = count;

@@ -1,4 +1,3 @@
-using Assets.Scripts.DTO;
 using Assets.Scripts.LobbyService;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +7,18 @@ namespace Assets.Scripts.UI.LobbyService
 {
     public class ExitLobbyButton : MonoBehaviour
     {
-        [SerializeField] private Button _exitLobbyButton;
+        private Button _exitLobbyButton;
+        private ILobbyService _lobbyService;
+        private Player _player;
         
         [Inject]
-        private void Init(ILobbyService lobbyService, Player player) => _exitLobbyButton.onClick.AddListener(() => lobbyService.ExitLobby(player.Id));
+        private void Init(ILobbyService lobbyService) => _lobbyService = lobbyService;
+        
+        private void Start()
+        {
+            _exitLobbyButton = GetComponent<Button>();
+            
+            _exitLobbyButton.onClick.AddListener(() => _lobbyService.ExitLobby(_player.Id));
+        }
     }
 }
