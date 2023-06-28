@@ -7,6 +7,8 @@ namespace Unity.Services.Lobbies.Builders
     {
         private CreateLobbyOptions _lobbyOptions;
 
+        public LobbyOptionsBuilder() => Reset();
+
         public LobbyOptionsBuilder SetIsPrivate(bool? isPrivate)
         {
             _lobbyOptions.IsPrivate = isPrivate;
@@ -31,9 +33,6 @@ namespace Unity.Services.Lobbies.Builders
             return this;
         }
 
-        public CreateLobbyOptions Build()
-        {
-            return _lobbyOptions;
-        }
+        public CreateLobbyOptions Build() => _lobbyOptions;
     }
 }

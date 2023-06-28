@@ -1,4 +1,4 @@
-using Assets.Scripts.LobbyService.Displays;
+using Assets.Scripts.LobbyService;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,20 +10,20 @@ namespace Assets.Scripts.UI.LobbyService
     {
         private Button _saveButton;
         private TMP_InputField _countInputField;
-        private ILobbiesDisplay _lobbiesDisplay;
+        private ILobbiesList _lobbiesList;
 
         [Inject]
-        private void Init(ILobbiesDisplay lobbiesDisplay) => _lobbiesDisplay = lobbiesDisplay;
+        private void Init(ILobbiesList lobbiesList) => _lobbiesList = lobbiesList;
 
         private void Start()
         {
-            _saveButton = GetComponentInChildren<Button>();
-            _countInputField = GetComponentInChildren<TMP_InputField>();
+            TryGetComponent(out _saveButton);
+            TryGetComponent(out _countInputField);
             
-            _saveButton.onClick.AddListener(() => _lobbiesDisplay.FilterOptions(
+            _saveButton.onClick.AddListener(() => _lobbiesList.FilterOptions(
                 int.Parse(_countInputField.text)));
             
-            _saveButton.onClick.AddListener(_lobbiesDisplay.DisplayLobbies);
+            _saveButton.onClick.AddListener(_lobbiesList.GetLobbies);
         }
     }
 }

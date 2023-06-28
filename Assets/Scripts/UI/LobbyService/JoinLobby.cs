@@ -17,8 +17,8 @@ namespace Assets.Scripts.UI.LobbyService
         
         private void Start()
         {
-            _joinLobbyButton = GetComponentInChildren<Button>();
-            _lobbyCodeInput = GetComponentInChildren<TMP_InputField>();
+            TryGetComponent(out _joinLobbyButton);           
+            TryGetComponent(out _lobbyCodeInput); 
             
             _joinLobbyButton.onClick.AddListener(() => _lobbyService.JoinLobbyByCode(_lobbyCodeInput.text));
         }

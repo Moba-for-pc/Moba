@@ -18,7 +18,7 @@ namespace Assets.Scripts.UI.LobbyService
         
         private void Start()
         {
-            _deleteLobbyButton = GetComponent<Button>();
+            TryGetComponent(out _deleteLobbyButton);
             
             _deleteLobbyButton.onClick.AddListener(_lobbyService.DeleteLobby);
         }

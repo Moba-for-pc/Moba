@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI.LobbyService
         
         private void Start()
         {
-            _exitLobbyButton = GetComponent<Button>();
+            TryGetComponent(out _exitLobbyButton);
             
             _exitLobbyButton.onClick.AddListener(() => _lobbyService.ExitLobby(_player.Id));
         }

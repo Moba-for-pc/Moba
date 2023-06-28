@@ -20,8 +20,8 @@ namespace Assets.Scripts.UI.LobbyService
         
         private void Start()
         {
-            _createLobbyButton = GetComponentInChildren<Button>();
-            _isPrivateToggle = GetComponentInChildren<Toggle>();
+            TryGetComponent(out _createLobbyButton);
+            TryGetComponent(out _isPrivateToggle);
             
             _createLobbyButton.onClick.AddListener(() => _lobbyService.CreateLobby(
                 _lobbyNameInputField.text,

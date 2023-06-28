@@ -14,8 +14,9 @@ namespace Assets.Scripts.LobbyService
         private Player _player;
         private float _heartbeatTimer;
 
-        private const int HeartbeatTimerMax = 15;
+        private const int HEARTBEAT_TIMER_MAX = 15;
 
+        public event Action<Lobby> OnCreateLobby;
         public event Action OnPlayerCountChange;
 
         #region Heartbeat
@@ -30,30 +31,21 @@ namespace Assets.Scripts.LobbyService
             _heartbeatTimer -= Time.fixedDeltaTime;
             if (_heartbeatTimer <= 0f)
             {
-                _heartbeatTimer = HeartbeatTimerMax;
+                _heartbeatTimer = HEARTBEAT_TIMER_MAX;
 
                 await Unity.Services.Lobbies.LobbyService.Instance.SendHeartbeatPingAsync(_lobby.Id);
             }
         }
         
         #endregion
-        
-        private void SetLobbyData(Unity.Services.Lobbies.Models.Lobby lobby)
-        {
-            _lobby.Name = lobby.Name;
-            _lobby.Id = lobby.Id;
-            _lobby.HostId = lobby.HostId;
-            _lobby.Players.Add(_player);
-        }
-        
+
         #region CreateLobby
         
         private CreateLobbyOptions CreateLobbyOptions(bool isPrivate, Dictionary<string, DataObject> data)
         {
-            LobbyOptionsBuilder lobbyOptionsBuilder = new LobbyOptionsBuilder().Reset();
+            LobbyOptionsBuilder lobbyOptionsBuilder = new LobbyOptionsBuilder();
             
-            lobbyOptionsBuilder.SetIsPrivate(isPrivate)
-                .SetData(data);
+            lobbyOptionsBuilder.SetIsPrivate(isPrivate).SetData(data);
             
             return lobbyOptionsBuilder.Build();
         }
@@ -64,12 +56,20 @@ namespace Assets.Scripts.LobbyService
             {
                 CreateLobbyOptions lobbyOptions = CreateLobbyOptions(isPrivate, data);
                 Unity.Services.Lobbies.Models.Lobby lobby = await Unity.Services.Lobbies.LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, lobbyOptions);
-                SetLobbyData(lobby);
-                
+
+                _lobby = new Lobby
+                {
+                    Name = lobby.Name,
+                    Id = lobby.Id,
+                    HostId = lobby.HostId
+                };
+
                 Debug.Log(lobby.Name + $" lobby created with {lobby.MaxPlayers} max players. Lobby code: " + lobby.LobbyCode);
             }
             catch (LobbyServiceException e){ Debug.LogError(e); }
-
+            
+            _lobby.Players.Add(_player);
+            OnCreateLobby?.Invoke(_lobby);
             OnPlayerCountChange?.Invoke();
         }
 
@@ -84,7 +84,7 @@ namespace Assets.Scripts.LobbyService
             catch (LobbyServiceException e){Debug.LogError(e);}
             
             Debug.Log($"Lobby {_lobby.Name} deleted");
-            _lobby = new Lobby();
+            _lobby = null;
         }
         
         public async void JoinLobbyByCode(string code)
@@ -93,11 +93,19 @@ namespace Assets.Scripts.LobbyService
             try
             {
                 Unity.Services.Lobbies.Models.Lobby lobby = await Lobbies.Instance.JoinLobbyByCodeAsync(code);
-                SetLobbyData(lobby);
+                _lobby = new Lobby
+                {
+                    Name = lobby.Name,
+                    Id = lobby.Id,
+                    HostId = lobby.HostId
+                };
             }
             catch (LobbyServiceException e) { Debug.LogError(e); }
             
             Debug.Log("Joined lobby with name " + _lobby.Name);
+            
+            _lobby.Players.Add(_player);
+            OnCreateLobby?.Invoke(_lobby);
             OnPlayerCountChange?.Invoke();
         }
 
@@ -110,7 +118,7 @@ namespace Assets.Scripts.LobbyService
             catch (LobbyServiceException e) { Debug.LogError(e); }
             
             Debug.Log($"Exit from {_lobby.Name}");
-            _lobby = new Lobby();
+            _lobby = null;
             OnPlayerCountChange?.Invoke();
         }
     }

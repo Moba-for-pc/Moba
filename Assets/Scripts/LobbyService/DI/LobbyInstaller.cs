@@ -1,4 +1,3 @@
-using Assets.Scripts.LobbyService.Displays;
 using Zenject;
 
 namespace Assets.Scripts.LobbyService.DI
@@ -8,7 +7,8 @@ namespace Assets.Scripts.LobbyService.DI
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<LobbyService>().AsSingle();
-            Container.Bind<ILobbiesDisplay>().To<LobbiesDisplay>().AsSingle();
+            Container.Bind<ILobbiesList>().To<LobbiesList>().AsSingle();
+            Container.Bind<LobbyPlayersList>().AsSingle();
         }
     }
 }
